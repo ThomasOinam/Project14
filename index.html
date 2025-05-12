@@ -1,274 +1,649 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Amazon Clone</title>
+    <title>Demo</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            background-image: url(pc_common_12th.CB555377188.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             margin: 0;
-            padding: 0;
-            background: #f1f1f1;
+            font-family: Arial, sans-serif;
         }
-    
-     .navbar {
+
+        .navbar {
+            display: flex;
             background-color: #131921;
             color: white;
-            display: flex;
+            padding: 10px;
             align-items: center;
-            padding: 10px 20px;
-            gap: 20px;
         }
 
-        .navbar .logo {
+        .logo {
             font-size: 24px;
             font-weight: bold;
+            margin-right: 20px;
         }
 
-        .navbar .search-bar input {
-            padding: 6px;
-            width: 300px;
+        .logo span {
+            color: orange;
         }
 
-        .navbar .nav-links {
-            margin-left: auto;
-            display: flex;
-            gap: 20px;
+        .dropdown {
+            position: relative;
         }
 
-        .navbar .nav-links div {
+        .dropbtn {
+            background-color: #ddd;
+            color: black;
+            padding: 8px;
+            border: none;
             cursor: pointer;
         }
 
-        .long-item, .card-grid {  
-            display: flex;  
-            gap: 10px;  
-            padding: 10px;  
-            overflow-x: auto;  
-        }  
-
-
-        .long-item, .card-grid {
-            display: flex;
-            gap: 10px;
-            padding: 10px;
-            overflow-x: auto;
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 150px;
+            z-index: 1;
         }
 
-        .section-row {
+        .dropdown-content a {
+            color: black;
+            padding: 8px 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .search-bar {
+            display: flex;
+            flex: 1;
+            margin: 0 20px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 8px;
+        }
+
+        .search-bar button {
+            padding: 8px 12px;
+            background-color: orange;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-links a {
+            color: white;
+            margin-left: 15px;
+            text-decoration: none;
+        }
+
+        .sub-navbar {
+            display: flex;
+            flex-direction: row;
+            background-color: #232f3e;
+            padding: 10px;
+        }
+
+        .sub-navbar a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .image {
+            position: relative;
+        }
+
+        .image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .main-section {
+            position: relative;
+            background-color: lightpink;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
             padding: 20px;
+            gap: 20px;
+            justify-content: center;
+
         }
 
-        .section-long, .section-card {
-            background: white;
-            margin: 10px;
+        .section-card {
+            background-color: white;
+            border: 1px solid #ccc;
+            width: 300px;
             padding: 15px;
-            flex: 1;
-            min-width: 300px;
+            border-radius:10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+            transition : transform 0.3s ease;
         }
 
         .section-card h2 {
-            margin: 0;
+            font-size: 16px;
+            margin: 0 0 5px 0;
+        }
+
+        .section-card p {
+            font-size: 14px;
+            margin: 0 0 15px 0;
+            color: #111;
+            font-weight: bold;
+            align-items: center;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
         .card-item {
-            flex: 1;
             text-align: center;
+        }
+
+        .card-item img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #eee;
+            border-radius: 4px;
         }
 
         .card-item span {
             display: block;
+            font-size: 12px;
             margin-top: 5px;
-            font-weight: bold;
+            color: #333;
         }
 
-        .footer {
-            background: #232f3e;
+        .see-more {
+            font-size: 13px;
+            color: #007185;
+            text-decoration: none;
+        }
+
+        .long-item {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            flex-shrink: 0;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .long-item img {
+            width: auto;
+            height: auto;
+            flex-shrink: 0;
+            border-radius: 4px;
+        }
+
+        .section-long {
+            background-color: white;
+            border: 1px solid #ccc;
+            width: 100%;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+        }
+
+         .footer {
+            background-color: #232f3e;
             color: white;
-            padding: 20px 0;
-            font-size: 14px;
         }
 
         .back-to-top {
+            background-color: #37475a;
+            color: white;
             text-align: center;
-            padding: 10px;
-            background: #37475a;
+            padding: 12px;
+            font-size: 13px;
             cursor: pointer;
         }
 
         .footer-links {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             flex-wrap: wrap;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         .footer-column {
-            flex: 1;
-            min-width: 200px;
-            margin: 10px 0;
+            flex: 1 1 180px;
+            margin: 10px 20px;
         }
 
         .footer-column h4 {
+            color: #ffffff;
+            font-weight: bold;
             margin-bottom: 10px;
         }
 
         .footer-column a {
             display: block;
-            color: white;
+            color: #dddddd;
             text-decoration: none;
-            margin: 5px 0;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .footer-column a:hover {
+            text-decoration: underline;
         }
 
         .footer-divider {
-            height: 1px;
-            background: #3a4553;
-            margin: 20px 0;
+            border-top: 1px solid #3a4553;
+            margin: 0 40px;
         }
 
         .footer-locale {
             text-align: center;
-            padding: 10px;
+            padding: 20px 0;
+        }
+
+        .footer-locale img {
+            vertical-align: middle;
+        }
+
+        .footer-locale select {
+            margin-left: 10px;
+            padding: 5px;
         }
 
         .blackbg {
-            background: #131a22;
-            padding: 20px;
+            background-color: #131921;
+            padding: 40px;
         }
 
         .footer-sub-links {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
-            justify-content: space-around;
-            color: #ddd;
+            color: #cccccc;
+            padding: 10px 20px;
+            font-size: 17px;
         }
 
         .footer-sub-links div {
-            flex: 1;
-            min-width: 150px;
-            margin: 10px;
+            margin: 5px 15px;
+            text-align: center;
         }
 
         .footer-sub-links a {
-            color: #ddd;
-            font-weight: bold;
+            color: #cccccc;
+            text-decoration: none;
+        }
+
+        .footer-sub-links a:hover {
+            text-decoration: underline;
         }
 
         .footer-copyright {
             text-align: center;
-            color: #aaa;
-            margin-top: 20px;
+            font-size: 12px;
+            color: #cccccc;
+            padding-bottom: 30px;
         }
 
-        .see-more {
-            font-size: 14px;
-            float: right;
-            text-decoration: none;
-            color: #007185;
+        .section-row {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 20px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
+
 <body>
-    <div class="navbar">
-    <div class="logo">amazon.in</div>
-    <div class="search-bar">
-        <input type="text" placeholder="Search Amazon.in">
-    </div>
-    <div class="nav-links">
-        <div>Hello, Sign in</div>
-        <div>Returns & Orders</div>
-        <div>Cart</div>
-    </div>
-</div>
-    <main>
-        <div class="section-row">
-            <div class="section-long">
-                <h2>Best sellers in electronics<a href="#" class="see-more">See all offers</a></h2>
-                <div class="long-item">
-                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/61o5Q8IIq4L._AC_SY200_.jpg">
-                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/7186aAI6FFL._AC_SY200_.jpg">
-                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/91ZVf3kNrcL._AC_SY200_.jpg">
-                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/91mv453UIVL._AC_SY200_.jpg">
-                </div>
+    <header class="navbar">
+        <div class="logo"><span>clone</span></div>
+
+        <div class="dropdown">
+            <button class="dropbtn">All</button>
+            <div class="dropdown-content">
+                <a href="#">All Categories</a>
+                <a href="#">Amazon Devices</a>
+                <a href="#">Amazon Fashion</a>
+                <a href="#">Appliances</a>
+                <a href="#">Books</a>
             </div>
         </div>
 
-        <div class="section-row">
-            <div class="section-long">
-                <h2>Best sellers in computers and accessories<a href="#" class="see-more">See all offers</a></h2>
-                <div class="long-item">
-                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/71nVIiWEcgL._AC_SY200_.jpg">
-                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/414C25OyjML._AC_SY200_.jpg">
-                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/51IFiSD+kCL._AC_SY200_.jpg">
-                </div>
-            </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search Amazon.in">
+            <button>Search</button>
         </div>
+
+        <div class="nav-links">
+            <a href="#">Returns & Orders</a>
+            <a href="#">Cart</a>
+        </div>
+    </header>
+    <nav class="sub-navbar">
+        <a href="#"><img src="icons8-menu-50 (1).png" alt="" style="height: 14px; width: 13px;"> All</a>
+        <a href="#">Sell</a>
+        <a href="#">Mobiles</a>
+        <a href="#">Bestsellers</a>
+        <a href="#">Today's Deals</a>
+        <a href="#">Prime</a>
+        <a href="#">Customer Service</a>
+        <a href="#">New Releases</a>
+    </nav>
+    <div class="image">
+        <img src="pc_common_12th.CB555377188.jpg" alt="" style="height: auto; width: 100%;">
+    </div>
+
+    <main class="main-section">
 
         <div class="section-row">
             <div class="section-card">
-                <h2>Wireless tech<a href="some-real-link.html" class="see-more">See all offers</a></h2>
+                <b>
+                    <h2>Game Accessories |</h2>
+                    <p>Up to 55% off</p>
+                </b>
                 <div class="card-grid">
                     <div class="card-item">
-                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Smartphone_1x._SY116_CB566164844_.jpg" width="166" height="170">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Fuji_Quad_Headset_1x.SY116_CB667159060.jpg">
+                        <span>Headsets</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Fuji_Quad_Keyboard_1x.SY116_CB667159063.jpg">
+                        <span>Keyboards</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Fuji_Quad_Mouse_1x.SY116_CB667159063.jpg" >
+                        <span>Computer mice</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Fuji_Quad_Chair_1x.SY116_CB667159060.jpg">
+                        <span>Chairs</span>
+                    </div>
+                </div>
+                <a href="#" class="see-more">See more</a>
+            </div>
+            <div class="section-card">
+                <b>
+                    <h2>Shop deals in fashion |</h2>
+                    <p>Up to 55% off</p>
+                </b> <br>
+                <div class="card-grid">
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/DQC_APR_TBYB_W_BOTTOMS_1x.SY116_CB624172947.jpg">
+                        <span>Jeans under ₹300</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/DQC_APR_TBYB_W_TOPS_1x.SY116_CB623353881.jpg" >
+                        <span>Tops under ₹150</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/DQC_APR_TBYB_W_DRESSES_1x.SY116_CB623353881.jpg" >
+                        <span>Dresses</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/DQC_APR_TBYB_W_SHOES_1x.SY116_CB624172947.jpg" >
+                        <span>Shoes under ₹500</span>
+                    </div>
+                </div>
+                <a href="#" class="see-more">Explore all</a>
+            </div>
+            <div class="section-card">
+                <b>
+                    <h2>Shops for home essentials |
+                    </h2>
+                </b>
+                <br>
+                <div class="card-grid">
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Bedding_1x.SY116_CB563137408.jpg">
+                        <span>Bedding</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/CleaningTool_1x.SY116_CB563137408.jpg">
+                        <span>Cleaning tools</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/HomeDecor_1x.SY116_CB563137408.jpg" >
+                        <span>Home Decor</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/HomeStorage_1x.SY116_CB563137408.jpg" >
+                        <span>Home Storage</span>
+                    </div>
+                </div>
+                <a href="#" class="see-more">See all offers</a>
+            </div>
+            <div class="section-card">
+                <b>
+                    <h2>New home arrival under ₹4000 </p>
+                    </h2>
+                </b>
+                <div class="card-grid">
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Home_Flip_Summer_2024_315_HP_NewArrivals_QuadCard_D_01_1x.SY116_CB555960040.jpg" alt="boat">
+                        <span>Kitchen & Dining</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Home_Flip_Summer_2024_316_HP_NewArrivals_QuadCard_D_02_1x.SY116_CB555960040.jpg">
+                        <span>Home Improvement</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Home_Flip_Summer_2024_317_HP_NewArrivals_QuadCard_D_03_1x.SY116_CB555960040.jpg">
+                        <span>Decor</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Home_Flip_Summer_2024_318_HP_NewArrivals_QuadCard_D_04_1x.SY116_CB555960040.jpg">
+                        <span>Bedding & Bath</span>
+                    </div>
+                </div>
+                <a href="#" class="see-more">See more</a>
+            </div>
+        </div>
+        <div class="section-row">
+            <div class="section-card">
+                <b>
+                    <h2>Refresh your space</h2>
+                </b>
+                <div class="card-grid">
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/DesktopQuadCat_186x116_LP-HP_B08MYX5Q2W_01.23.SY116_CB619238939.jpg" >
+                        <span>Dining</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/DesktopQuadCat_186x116_home_B08RCCP3HV_01.23.SY116_CB619238939.jpg">
+                        <span>Home</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/DesktopQuadCat_186x116_health-beauty_B07662GN57_01.23.SY116_CB619238939.jpg">
+                        <span>Health & Beauty</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/DesktopQuadCat_186x116_kitchen_B0126LMDFK_01.23.SY116_CB619238939.jpg">
+                        <span>Kitchen</span>
+                    </div>
+                </div>
+                <a href="#" class="see-more">See more</a>
+            </div>
+            <div class="section-card">
+                <b>
+                    <h2>Most-loved watches |<br>under ₹200</p></h2>
+                </b> <br>
+                <div class="card-grid">
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/WomenWatches_1x.SY116_CB564394432.jpg">
+                        <span>Women</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/MenWatches_1x.SY116_CB564394432.jpg">
+                        <span>Men</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/GirlWatches_1x.SY116_CB564394432.jpg">
+                        <span>Girls</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/BoyWatches_1x.SY116_CB564394432.jpg">
+                        <span>Boys</span>
+                    </div>
+                </div>
+                <a href="#" class="see-more">Explore all</a>
+            </div>
+            <div class="section-card">
+                <b>
+                    <h2>Most-loved travel essentials</p>
+                    </h2>
+                </b>
+                <div class="card-grid">
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Backpack_1x.SY116_CB566100767.jpg">
+                        <span>Backpacks</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/TravelBag_1x.SY116_CB566100767.jpg">
+                        <span>Suitcase</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Accessories_1x.SY116_CB566100767.jpg">
+                        <span>Accessories</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Handbags_1x.SY116_CB566100767.jpg">
+                        <span>Handbags</span>
+                    </div>
+                </div>
+                <a href="#" class="see-more">Explore all</a>
+            </div>
+            <div class="section-card">
+                <b>
+                    <h2>Gaming merchandise</p>
+                    </h2>
+                </b>
+                <div class="card-grid">
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Fuji_Quad_Apparel_1x.SY116_CB667159060.jpg">
+                        <span>Apparel</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Fuji_Quad_Hat_1x.SY116_CB667159060.jpg">
+                        <span>Hats</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Fuji_Quad_Figure_1x.SY116_CB667159060.jpg">
+                        <span>Action figures</span>
+                    </div>
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Fuji_Quad_Mug_1x.SY116_CB667159063.jpg">
+                        <span>Mugs</span>
+                    </div>
+                </div>
+                <a href="#" class="see-more">See more</a>
+            </div>
+        </div>
+        <div class="section-row">
+            <div class="section-long">
+                <b>
+                    <h2>Best sellers in books<a href="#" class="see-more"> &nbsp;&nbsp; See
+                            more</a>
+                    </h2>
+                </b>
+                <div class="long-item">
+                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/61o5Q8IIq4L.AC_SY200.jpg">
+                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/7186aAI6FFL.AC_SY200.jpg">
+                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/91ZVf3kNrcL.AC_SY200.jpg">
+                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/91mv453UIVL.AC_SY200.jpg">
+                </div>
+            </div>
+        </div>
+        <div class="section-row">
+            <div class="section-long">
+                <b>
+                    <h2>Best sellers in computers and accesories<a href="#" class="see-more"> &nbsp;&nbsp; See all
+                            offers</a></h2>
+                </b>
+                <div class="long-item">
+                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/71nVIiWEcgL.AC_SY200.jpg">
+                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/414C25OyjML.AC_SY200.jpg">
+                    <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/51IFiSD+kCL.AC_SY200.jpg">
+                </div>
+            </div>
+        </div>
+        <div class="section-row">
+            <div class="section-card">
+                <h2 style="font-size: 20px;">Wireless tech<a href="#" class="see-more"> &nbsp;&nbsp; See all
+                    offers</a></h2> <br><br><br>
+                <div class="card-grid">
+                    <div class="card-item">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Smartphone_1x.SY116_CB566164844.jpg" width="166px" height="170px">
                         <span>Smartphones</span>
                     </div>
                     <div class="card-item">
-                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Tablet_1x._SY116_CB566164844_.jpg" width="166" height="170">
-                        <span>Tablets</span>
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Tablet_1x.SY116_CB566164844.jpg" width="166px" height="170px">
+                    
                     </div>
                 </div>
             </div>
-
             <div class="section-card">
-                <h2>Explore more in sports<a href="some-real-link.html" class="see-more">See all offers</a></h2>
+                <h2 style="font-size: 20px;">Explore more in sports<a href="#" class="see-more"> &nbsp;&nbsp; See all
+                    offers</a></h2> <br></h2>
                 <div class="card-grid">
                     <div class="card-item">
-                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Cycling_1X._SY116_CB563192628_.jpg">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Cycling_1X.SY116_CB563192628.jpg">
                         <span>Cycling</span>
                     </div>
                     <div class="card-item">
-                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Running_1X._SY116_CB563192628_.jpg">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Running_1X.SY116_CB563192628.jpg">
                         <span>Running</span>
                     </div>
                 </div>
             </div>
-
             <div class="section-card">
-                <h2>Home and kitchen essentials</h2>
+                <h2 style="font-size: 20px;">Home and kitchen essentials</h2> <br><br><br>
                 <div class="card-grid">
                     <div class="card-item">
-                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Coffee_Machine._SY116_CB545166645_.jpg" width="166" height="170">
-                        <span>Coffee Machine</span>
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Coffee_Machine.SY116_CB545166645.jpg" width="166px" height="170px">
+                    <span>Coffee Machine</span>
                     </div>
                     <div class="card-item">
-                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Multi-Cooker_1x._SY116_CB545166645_.jpg" width="166" height="170">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Multi-Cooker_1x.SY116_CB545166645.jpg" width="166px" height="170px">
                         <span>Multi-Cooker</span>
                     </div>
                 </div>
             </div>
-
             <div class="section-card">
-                <h2>Score the top PCs & Accessories<a href="some-real-link.html" class="see-more">See all offers</a></h2>
+                <h2 style="font-size: 20px;">Score the top PCs & Accessories&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="see-more"> &nbsp;&nbsp; See all
+                    offers</a></h2> <br></h2>
                 <div class="card-grid">
                     <div class="card-item">
-                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Fuji_BTF_Quad_Cards_1x_Desktops._SY116_CB558654384_.jpg" width="166" height="170">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Fuji_BTF_Quad_Cards_1x_Desktops.SY116_CB558654384.jpg" width="166px" height="170px">
                         <span>Desktops</span>
                     </div>
+
                     <div class="card-item">
-                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Fuji_BTF_Quad_Cards_1x_laptop._SY116_CB558654384_.jpg" width="166" height="170">
+                        <img src="https://raw.githubusercontent.com/ThomasOinam/Project14/main/Fuji_BTF_Quad_Cards_1x_laptop.SY116_CB558654384.jpg" width="166px" height="170px">
                         <span>Laptops</span>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
     </main>
-
-    <footer class="footer">
+    <div class="footer">
         <div class="back-to-top">Back to top</div>
-
         <div class="footer-links">
             <div class="footer-column">
                 <h4>Get to Know Us</h4>
@@ -305,9 +680,7 @@
                 <a href="#">Help</a>
             </div>
         </div>
-
         <div class="footer-divider"></div>
-
         <div class="footer-locale">
             India
             <select>
@@ -315,25 +688,43 @@
                 <option>Hindi</option>
             </select>
         </div>
-
         <div class="blackbg">
             <div class="footer-sub-links">
-                <div><a href="#">AbeBooks</a><br>Books, art<br>& collectibles</div>
-                <div><a href="#">Amazon Web Services</a><br>Scalable Cloud<br>Computing Services</div>
-                <div><a href="#">Audible</a><br>Download<br>Audio Books</div>
-                <div><a href="#">IMDb</a><br>Movies, TV<br>& Celebrities</div>
-                <div><a href="#">Shopbop</a><br>Designer<br>Fashion Brands</div>
-                <div><a href="#">Amazon Business</a><br>Everything For<br>Your Business</div>
-                <div><a href="#">Prime Now</a><br>2-Hour Delivery<br>on Everyday Items</div>
-                <div><a href="#">Amazon Prime Music</a><br>100 million songs, ad-free<br>Over 15 million podcast episodes</div>
-            </div>
-
+                <div>
+                    <a href="#">AbeBooks</a><br />Books, art<br />& collectibles
+                </div>
+                <div>
+                    <a href="#">Amazon Web Services</a><br />Scalable Cloud<br />Computing Services
+                </div>
+                <div>
+                    <a href="#">Audible</a><br />Download<br />Audio Books
+                </div>
+                <div>
+                    <a href="#">IMDb</a><br />Movies, TV<br />& Celebrities
+                </div>
+                <div>
+                    <a href="#">Shopbop</a><br />Designer<br />Fashion Brands
+                </div>
+                <div>
+                    <a href="#">Amazon Business</a><br />Everything For<br />Your Business
+                </div>
+                <div>
+                    <a href="#">Prime Now</a><br />2-Hour Delivery<br />on Everyday Items
+                </div>
+                <div>
+                    <a href="#">Amazon Prime Music</a><br />100 million songs, ad-free<br />Over 15 million podcast
+                    episodes
+                </div>
+            </div> <br><br><br><br><br>
             <div class="footer-copyright">
-                <div>Conditions of Use & Sale | Privacy Notice | Interest-Based Ads</div>
-                <div>&copy; OinamThomasMeitei@2025</div>
+                <div>Conditions of Use & Sale &nbsp;|&nbsp; Privacy Notice &nbsp;|&nbsp; Interest-Based Ads</div>
+                <div>&copy; OinamThomasMeitei@2025,for education purpose</div>
             </div>
         </div>
-    </footer>
+    </div>
+
+
 
 </body>
+
 </html>
